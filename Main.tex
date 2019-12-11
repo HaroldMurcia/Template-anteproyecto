@@ -1,0 +1,192 @@
+% Created by Miller Gerardo Arcos -----------------
+
+\documentclass[english, a4paper, 12pt, twoside]{article} 
+\def\logouniversidad { \includegraphics[width=3in]{unibaguelogo.png}}
+\def\logosirui{\includegraphics[width=2in]{siruilogo.png}}
+\def\logosi2c{\includegraphics[width=2in]{si2clogo.png}}
+% -------------- Setup, do not change these ---------------
+\usepackage{textcomp}
+\usepackage[T1]{fontenc, url}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\usepackage{multirow}
+\usepackage{minted} % Code highlighting
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm} %Mathematical packages
+\usepackage{enumerate}
+\usepackage{parskip} % Removing indenting in new paragraphs
+\urlstyle{sf}
+\usepackage{color}
+\usepackage{subcaption} 
+\usepackage{appendix}
+\usepackage{chngcntr} % needed for correct table numbering
+\counterwithin{table}{section} % numbering of tables 
+\counterwithin{figure}{section} % numbering of figures
+\numberwithin{equation}{section} % numbering of equations
+\hyphenpenalty=100000 % preventing splitting of words
+\sloppy 
+\raggedbottom 
+\usepackage{xparse,nameref}
+\usepackage[bottom]{footmisc} % Fotnotes are fixed to bottom of page
+\usepackage{lipsum} % For genereating dummy text
+% --------- You can edit from this point on --------
+
+
+% ----- Appearance and language ----- 
+\usepackage[spanish]{babel} % document language
+\graphicspath{{Figures/}{../Figures/}} % path to images
+\usepackage[margin=2.54cm]{geometry} % sets margins for the document
+\usepackage{setspace}
+\linespread{1.5} % line spread for the document
+\usepackage{microtype}
+
+
+% ----- Sections -----
+\titleformat*{\section}{\LARGE\bfseries} % \section heading
+\titleformat*{\subsection}{\Large\bfseries} % \subsection heading
+\titleformat*{\subsubsection}{\large\bfseries} % \subsubsection heading
+% next three lines creates the \paragraph command with correct heading 
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+% ----- Figures and tables ----- 
+\usepackage{fancyhdr}
+\usepackage{subfiles}
+\usepackage{array}
+\usepackage[rightcaption]{sidecap}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage[labelfont=bf]{caption} % bold text for captions
+\usepackage[para]{threeparttable} % fancy tables, check these before you use them
+\usepackage{url}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{makecell}
+\usepackage{hhline}
+
+
+% ----- Sources -----
+\usepackage{natbib}
+\bibliographystyle{apa} % citation and reference list style
+\def\biblio{\clearpage\bibliographystyle{apa}\bibliography{References.bib}} % defines the \biblio command used for referencing in subfiles - DO NOT CHANGE
+
+
+% ----- Header and footer -----
+\pagestyle{fancy}
+\fancyhead[RO,LE]{\thepage} % page number on right for odd pages and left for even pages in the header
+\fancyhead[RE,LO]{\nouppercase{\rightmark}} % chapter name and number on the right for even pages and left for odd pages in the header
+%\renewcommand{\headrulewidth}{0pt} % sets thickness of header line
+\fancyfoot{} % removes page number on bottom of page
+\fancyfoot[L]{Universidad de Ibagu\'e} 
+
+
+% ----- Header of the frontpage ----- 
+\fancypagestyle{frontpage}{
+	\fancyhf{}
+ 
+
+	\renewcommand{\footrulewidth}{3pt}
+	\vspace*{1\baselineskip}
+	
+	\renewcommand{\footrulewidth}{2pt}
+	\fancyhead[R]{ \logouniversidad}
+	\fancyhead[L]{ \logosirui} 
+	\fancyfoot[L]{Universidad de Ibagu\'e \LaTeX{} \  \texttt{\today} }
+}
+
+
+% ----- Document starts here ----- 
+\begin{document}
+
+\def\biblio{} % resets the biblio command, if not here a new reference list will be produced after every chapter
+
+\include{NHH-Frontpage}
+\restoregeometry % restores the margins after frontpage
+%\nocite{*} % uncomment if you want all sources to be printed in the reference list, including the ones which are not cited in the text 
+
+\pagenumbering{gobble} % suppress page numbering
+\thispagestyle{plain} % suppress header
+\clearpage\mbox{}\clearpage % add blank page
+
+\pagenumbering{roman} % starting roman page numbering
+%\newpage
+%\section*{Acknowledgements}
+ %   \subfile{Chapters/Acknowledgements}
+
+%\newpage
+%\section*{Abstract}
+    %\subfile{Chapters/Abstract}
+
+\newpage
+{\setstretch{1.0} % line spacing for the list
+\tableofcontents
+}
+
+%\newpage
+%{\setstretch{1.0} 
+%\listoffigures}
+ 
+%\newpage
+%{\setstretch{1.0} 
+%\listoftables}
+
+\newpage
+\addtocontents{toc}{\protect\setcounter{tocdepth}{4}} % sets depth of toc to 4, 1.1.1.1
+\pagenumbering{arabic} % Starting arabic page numbering
+\setcounter{page}{1} % sets pagecounter to 1
+
+\section{Presentación General}
+    \subfile{Chapters/presentacionG}
+\section{Componentes de la Propuesta}
+    \subsection{Resumen}
+        \subfile{Chapters/Resumen}
+    \subsection{Objetivos}
+        \subsubsection{General}
+            \subfile{Chapters/General}
+        \subsubsection{Específicos}
+            \subfile{Chapters/Especificos}
+    \subsection{Descripción del problema y justificación}
+        \subfile{Chapters/Des-jus}
+    \subsection{Referentes Teóricos}
+        \subfile{Chapters/Referentes}
+    \subsection{Metodología propuesta}
+        \subfile{Chapters/Metodologia}
+    \subsection{Entregables al terminar el proyecto}
+        \subfile{Chapters/Entregables}
+    \subsection{Beneficiarios o Sector de Intervención}
+        \subfile{Chapters/Beneficiarios}
+    \subsection{Plan de Trabajo}
+        \subfile{Chapters/Plan}
+    \subsection{Referencias}
+        \subfile{Chapters/Ref}
+     \subsection{EVALUACIÓN DE LA PROPUESTA}
+        \subfile{Chapters/Evaluacion}
+    
+    
+
+
+%\newpage
+%\renewcommand\refname{References} % name for the reference list
+%{\setstretch{1.0} % linespacing for the references
+%\addcontentsline{toc}{section}{References} % to change the name of the references in the TOC
+%\bibliography{References.bib} % adds the references to the document
+%}
+
+%\newpage
+%\renewcommand{\appendixpagename}{Appendix} % Heading of appendix
+%\renewcommand{\appendixtocname}{Appendix} % name of appendix in TOC
+%\appendixpage 
+%\addappheadtotoc
+
+
+
+% TIPS AND TRICKS - REMOVE WHEN YOU DON'T NEED IT ANYMORE
+%\newpage
+%\section{Tips and tricks to get you started}
+ %   \subfile{Chapters/Tips}
+
+\end{document}
